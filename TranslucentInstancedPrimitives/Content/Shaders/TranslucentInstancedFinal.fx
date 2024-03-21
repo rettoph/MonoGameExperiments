@@ -52,9 +52,9 @@ float4 MainPS(VertexShaderOutput input) : SV_TARGET
 {
     float4 accum = tex2D(AccumTextureSampler, input.TextureCoordinates);
     
-    if (RenderAccum == true)
+    if (RenderAccum == false)
     {
-        return accum;
+        return input.Color;
     }
     
     // return float4(input.TextureCoordinates, 0, 1);

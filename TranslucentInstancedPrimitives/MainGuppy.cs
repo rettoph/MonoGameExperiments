@@ -72,7 +72,7 @@ namespace TranslucentInstancedPrimitives
             {
                 _squares.Add(new Entity()
                 {
-                    Position = new Vector3(Random.Shared.NextSingle() * _bounds.Width, Random.Shared.NextSingle() * _bounds.Height, Random.Shared.NextSingle() * 10),
+                    Position = new Vector3(Random.Shared.NextSingle() * _bounds.Width, Random.Shared.NextSingle() * _bounds.Height, (Random.Shared.NextSingle() * 10) - 5),
                     Velocity = new Vector3((Random.Shared.NextSingle() * MaxVelocity) - (MaxVelocity / 2), (Random.Shared.NextSingle() * MaxVelocity) - (MaxVelocity / 2), 0),
                     Color = new Color(Random.Shared.NextSingle(), Random.Shared.NextSingle(), 0, 0.75f)
                 });
@@ -84,13 +84,13 @@ namespace TranslucentInstancedPrimitives
             {
                 _triangles.Add(new Entity()
                 {
-                    Position = new Vector3(Random.Shared.NextSingle() * _bounds.Width, Random.Shared.NextSingle() * _bounds.Height, Random.Shared.NextSingle() * 10),
+                    Position = new Vector3(Random.Shared.NextSingle() * _bounds.Width, Random.Shared.NextSingle() * _bounds.Height, (Random.Shared.NextSingle() * 20) - 10),
                     Velocity = new Vector3((Random.Shared.NextSingle() * MaxVelocity) - (MaxVelocity / 2), (Random.Shared.NextSingle() * MaxVelocity) - (MaxVelocity / 2), 0),
                     Color = new Color(Random.Shared.NextSingle(), 0, Random.Shared.NextSingle(), 0.75f)
                 });
             }
 
-            _target_final = new RenderTarget2D(_graphics, _graphics.Viewport.Width, _graphics.Viewport.Height, false, SurfaceFormat.Vector4, DepthFormat.None);
+            _target_final = new RenderTarget2D(_graphics, _graphics.Viewport.Width, _graphics.Viewport.Height, false, SurfaceFormat.Vector4, DepthFormat.Depth16);
             _target_accum = new RenderTarget2D(_graphics, _graphics.Viewport.Width, _graphics.Viewport.Height, false, SurfaceFormat.Vector4, DepthFormat.None);
 
             _data_accum = new Vector4[_graphics.Viewport.Width * _graphics.Viewport.Height];
@@ -123,6 +123,7 @@ namespace TranslucentInstancedPrimitives
             _graphics.BlendState = _bs;
             _graphics.DepthStencilState = DepthStencilState.None;
             _graphics.RasterizerState = RasterizerState.CullNone;
+            _graphics.SamplerStates[0] = SamplerState.PointClamp;
 
             _effect_accum.WorldViewProjection = _world * _view * _projection;
             _effect_accum.CurrentTechnique.Passes[0].Apply();
@@ -141,7 +142,6 @@ namespace TranslucentInstancedPrimitives
             _effect_final.WorldViewProjection = _world * _view * _projection;
             _effect_final.AccumTexture = _target_accum;
             _effect_final.RenderAccum = Keyboard.GetState().IsKeyDown(Keys.LeftControl);
-            // _effect_final.ViewportBounds = new Vector4(0, 0, _graphics.Viewport.Width, _graphics.Viewport.Height);
             _effect_final.CurrentTechnique.Passes[0].Apply();
             _triangleRenderer.Draw(_triangleVertices, _effect_final);
             _squareRenderer.Draw(_squareVertices, _effect_final);
@@ -152,7 +152,6 @@ namespace TranslucentInstancedPrimitives
             _graphics.BlendState = BlendState.AlphaBlend;
             _graphics.DepthStencilState = DepthStencilState.None;
             _graphics.RasterizerState = RasterizerState.CullNone;
-            _graphics.SamplerStates[0] = SamplerState.LinearWrap;
 
             _spriteBatch.Begin();
             _spriteBatch.Draw(_target_final, Vector2.Zero, Color.White);
