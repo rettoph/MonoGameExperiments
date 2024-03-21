@@ -2,8 +2,6 @@
 #define PS_SHADERMODEL ps_3_0
 
 matrix WorldViewProjection;
-float4 ViewportBounds; // x, y, width, height
-bool RenderAccum;
 
 Texture2D AccumTexture;
 sampler2D AccumTextureSampler = sampler_state
@@ -52,19 +50,20 @@ float4 MainPS(VertexShaderOutput input) : SV_TARGET
 {
     float4 accum = tex2D(AccumTextureSampler, input.TextureCoordinates);
     
-    if (RenderAccum == false)
-    {
+    if (accum.a < 2000)
+    { // Indicates theres only 1 layer, as 2 layers would at least be 2000
         return input.Color;
     }
-    
-    // return float4(input.TextureCoordinates, 0, 1);
 
+    // Alpha channel is:
+    // (layers * 1000) + alpha;
     float layers = round(accum.a / 1000);
     float alpha = accum.a % 1000;
     
+    // Divide the accum colors by the total number of layers
     float4 rgba = float4(accum.rgb, alpha) / layers;
     
-    
+    // Average the int color + avg.rgb, use the accum alpha avg
     return float4((input.Color.rgb + (rgba.rgb * rgba.a)) / 2, rgba.a);
 }
 

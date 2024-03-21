@@ -37,6 +37,8 @@ VertexShaderOutput MainVS(in VertexShaderStaticInput input_static, in VertexShad
 
 float4 MainPS(VertexShaderOutput input) : SV_TARGET
 {
+    // Alpha channel is:
+    // (layers * 1000) + alpha;
     return input.Color + float4(0, 0, 0, 1000);
 }
 
