@@ -48,10 +48,16 @@ namespace TranslucentInstancedPrimitives.Utilities
 
         public void Draw(List<VertexInstance> instances, Effect effect)
         {
+            if (instances.Count == 0)
+            {
+                return;
+            }
+
             if (_instanceVertices.Resize(instances.Count) || true)
             {
                 this.SetBindings();
             }
+
 
             instances.CopyTo(_instanceVertices.Data);
             _instanceVertices.SetData(instances.Count);
@@ -59,7 +65,7 @@ namespace TranslucentInstancedPrimitives.Utilities
             _graphics.SetVertexBuffers(_bindings);
             _graphics.Indices = _indices;
 
-            effect.CurrentTechnique.Passes[0].Apply();
+            // effect.CurrentTechnique.Passes[0].Apply();
             _graphics.DrawInstancedPrimitives(PrimitiveType.TriangleList, 0, 0, this.TriangleCount, this.InstanceCount);
         }
 

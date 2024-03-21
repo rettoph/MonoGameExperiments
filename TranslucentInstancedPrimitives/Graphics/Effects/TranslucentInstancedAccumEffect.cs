@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using MonoGameOIT.Graphics.Effects;
 
 namespace TranslucentInstancedPrimitives.Graphics.Effects
 {

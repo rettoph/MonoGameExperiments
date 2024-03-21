@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGameOIT.Graphics.Effects
+namespace TranslucentInstancedPrimitives.Graphics.Effects
 {
     public abstract class BaseEffect : Effect
     {
