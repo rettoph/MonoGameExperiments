@@ -136,6 +136,7 @@ namespace TranslucentInstancedPrimitives
             _graphics.BlendState = BlendState.Opaque;
             _graphics.DepthStencilState = DepthStencilState.Default;
             _graphics.RasterizerState = RasterizerState.CullNone;
+            _graphics.SamplerStates[0] = SamplerState.PointClamp;
 
             _effect_final.WorldViewProjection = _world * _view * _projection;
             _effect_final.AccumTexture = _target_accum;
@@ -151,6 +152,7 @@ namespace TranslucentInstancedPrimitives
             _graphics.BlendState = BlendState.AlphaBlend;
             _graphics.DepthStencilState = DepthStencilState.None;
             _graphics.RasterizerState = RasterizerState.CullNone;
+            _graphics.SamplerStates[0] = SamplerState.LinearWrap;
 
             _spriteBatch.Begin();
             _spriteBatch.Draw(_target_final, Vector2.Zero, Color.White);

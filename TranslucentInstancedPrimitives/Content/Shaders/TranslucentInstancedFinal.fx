@@ -59,7 +59,7 @@ float4 MainPS(VertexShaderOutput input) : SV_TARGET
     
     // return float4(input.TextureCoordinates, 0, 1);
 
-    float layers = floor(accum.a / 1000);
+    float layers = round(accum.a / 1000);
     float alpha = accum.a % 1000;
     
     float4 rgba = float4(accum.rgb, alpha) / layers;
