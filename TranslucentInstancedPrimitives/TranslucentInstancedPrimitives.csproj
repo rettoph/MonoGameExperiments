@@ -5,6 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +29,11 @@
 	
   <ItemGroup>
     <EmbeddedResource Include="Content\Shaders\*.fx" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Content\Shaders\Compiled\" />
+    <Folder Include="Components\" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(OS)' == 'Windows_NT' ">
