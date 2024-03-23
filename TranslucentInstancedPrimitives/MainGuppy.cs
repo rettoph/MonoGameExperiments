@@ -141,7 +141,6 @@ namespace TranslucentInstancedPrimitives
 
             _effect_final.WorldViewProjection = _world * _view * _projection;
             _effect_final.AccumTexture = _target_accum;
-            _effect_final.RenderAccum = Keyboard.GetState().IsKeyDown(Keys.LeftControl);
             _effect_final.CurrentTechnique.Passes[0].Apply();
             _triangleRenderer.Draw(_triangleVertices, _effect_final);
             _squareRenderer.Draw(_squareVertices, _effect_final);
