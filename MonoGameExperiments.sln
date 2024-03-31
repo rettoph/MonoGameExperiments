@@ -51,6 +51,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Content.Builder.Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Content.Builder", "libraries\Guppy\libraries\MonoGame\Tools\MonoGame.Content.Builder\MonoGame.Content.Builder.csproj", "{6D65B80C-BD08-471C-83D9-1534A509CAD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLines", "CustomLines\CustomLines.csproj", "{42415C93-6288-4887-A8D5-B8054357E0FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,14 @@ Global
 		{6D65B80C-BD08-471C-83D9-1534A509CAD4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D65B80C-BD08-471C-83D9-1534A509CAD4}.Release|x64.ActiveCfg = Release|Any CPU
 		{6D65B80C-BD08-471C-83D9-1534A509CAD4}.Release|x64.Build.0 = Release|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{42415C93-6288-4887-A8D5-B8054357E0FA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
