@@ -21,4 +21,26 @@
 		<MonoGameContentReference Include="Content\Content.mgcb" />
 	</ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Content\Shaders\Compiled\*.mgfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Shaders\*.fx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Content\Shaders\Compiled\Line.fx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\Shaders\Compiled\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(OS)' == 'Windows_NT' ">
+    <Exec Command="pwsh.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(ProjectDir)Content\CompileShaders.ps1" />
+  </Target>
+
 </Project>

@@ -32,10 +32,6 @@
   </ItemGroup>
 	
   <ItemGroup>
-    <None Remove="Content\Shaders\TranslucentInstancedFinal.fx" />
-  </ItemGroup>
-	
-  <ItemGroup>
     <Folder Include="Content\Shaders\Compiled\" />
   </ItemGroup>
 
